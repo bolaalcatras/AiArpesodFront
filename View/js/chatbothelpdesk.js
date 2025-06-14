@@ -4,7 +4,7 @@ const chatInput = document.getElementById('chat-input');
 const messagesContainer = document.getElementById('chat-messages');
 
 
-const API_URL = 'http://127.0.0.1:8000/chatbot/ask-helpdesk' ;
+const API_URL = 'https://aiarpesod.onrender.com/chatbot/ask-helpdesk' ;
 
 chatForm.addEventListener('submit', async (event) => {
     event.preventDefault();
