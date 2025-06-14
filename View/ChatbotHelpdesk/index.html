@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente IA - Mejorado Visualmente</title>
+    
+    <link rel="stylesheet" href="../css/chatbot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>        
+<body>
+    <div id="chat-container">
+        <div class="chat-header">
+            Asistente de Repositorio IA
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message-block bot">
+                <div class="message-avatar">IA</div>
+                <div class="message-content">Hola, soy tu asistente virtual. ¿En qué puedo ayudarte con el sistema de mesa de ayuda?</div>
+            </div>
+        </div>
+        <div class="chat-form-container">
+            <form class="chat-form" id="chat-form">
+                <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+                <button type="submit" aria-label="Enviar">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="../js/chatbothelpdesk.js"></script>
+</body>     

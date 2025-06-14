@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepWiki - Analizador de Repositorios</title>
+    <!-- Enlace al archivo de estilos CSS -->
+    <link rel="stylesheet" href="../css/analisis.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DeepWiki - Analizador de Repositorios</h1>
+            <p>Pega la URL de un repositorio de Git para crear una base de conocimiento y habilitar el chatbot.</p>
+        </header>
+
+        <form id="repo-form">
+            <input type="url" id="repo-url" placeholder="https://github.com/usuario/repositorio.git" required>
+            <button type="submit" id="analyze-button">Analizar Repositorio</button>
+        </form>
+
+        <div id="status-container">
+             <div id="status-message"></div>
+             <!-- El enlace al chatbot aparecerá aquí -->
+             <a href="../Chatbot/index.html" id="chatbot-link" class="button-chatbot" style="display: none;">Hablar con el Chatbot</a>
+        </div>
+       
+        <div id="results-container">
+            <!-- Los resultados del análisis se mostrarán aquí -->
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="../js/analisis.js"></script>
+</body>
+</html>

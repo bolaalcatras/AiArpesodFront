@@ -1,0 +1,215 @@
+/* --- VARIABLES DE DISEÑO --- */
+:root {
+    --background-color: #1e1e2f; /* Un azul oscuro más profundo */
+    --chat-container-bg: #27293d; /* Un tono ligeramente más claro para el contenedor */
+    --bot-message-bg: #3a3f57;
+    --user-message-bg: #4f537b; /* Un color distintivo para el usuario */
+    --input-bg-color: #2c2e43;
+    --text-color: #e0e0ff;
+    --header-text-color: #ffffff;
+    --accent-color: #8a79f7; /* Un violeta/azul vibrante */
+    --font-family: 'Poppins', -apple-system, BlinkMacSystem-Font, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --border-radius-md: 12px;
+    --border-radius-lg: 18px;
+}
+
+/* --- ESTILOS GENERALES Y SCROLLBAR --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    background-image: radial-gradient(circle at top left, rgba(138, 121, 247, 0.1), transparent 40%);
+    color: var(--text-color);
+    overflow: hidden; /* Evita el scroll en el body */
+}
+
+/* Estilo de la barra de desplazamiento para navegadores Webkit */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--chat-container-bg);
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--bot-message-bg);
+    border-radius: 10px;
+    border: 2px solid var(--chat-container-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-color);
+}
+
+
+/* --- CONTENEDOR PRINCIPAL DEL CHAT --- */
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--chat-container-bg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* --- ENCABEZADO --- */
+.chat-header {
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--header-text-color);
+    background-color: rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- ÁREA DE MENSAJES --- */
+.chat-messages {
+    flex-grow: 1;
+    padding: 30px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- BLOQUES DE MENSAJES INDIVIDUALES --- */
+.message-block {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end; /* Alinea al final para el efecto "cola" */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Avatares circulares */
+    background-color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.message-content {
+    padding: 15px 20px;
+    border-radius: var(--border-radius-lg);
+    max-width: 85%;
+    word-wrap: break-word;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Estilos para el BOT */
+.message-block.bot .message-content {
+    background-color: var(--bot-message-bg);
+    border-bottom-left-radius: var(--border-radius-md);
+}
+.message-block.bot .message-avatar {
+    background-color: var(--accent-color);
+}
+
+/* Estilos para el USUARIO */
+.message-block.user {
+    flex-direction: row-reverse; /* Mensajes del usuario a la derecha */
+}
+.message-block.user .message-content {
+    background-color: var(--user-message-bg);
+    color: var(--header-text-color);
+    border-bottom-right-radius: var(--border-radius-md);
+}
+.message-block.user .message-avatar {
+    background-color: #6c757d;
+}
+
+/* Indicador de "escribiendo..." mejorado */
+.message-content.thinking {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 15px 20px;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    animation: thinking-bounce 1.4s infinite ease-in-out both;
+}
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes thinking-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+/* --- FORMULARIO DE ENTRADA --- */
+.chat-form-container {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.chat-form {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg-color);
+    border-radius: var(--border-radius-lg);
+    padding: 5px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.chat-form input {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+}
+
+.chat-form input:focus {
+    outline: none;
+}
+
+.chat-form input::placeholder {
+    color: #888aaa;
+}
+
+.chat-form button {
+    background-color: var(--accent-color);
+    border: none;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.chat-form button:hover {
+    background-color: #a192ff;
+}
+
+.chat-form button svg {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+}
